@@ -1,16 +1,16 @@
 ---
-title: <The EIP title is a few words, not a complete sentence>
-description: <Description is one full (short) sentence>
-author: <a comma separated list of the author's or authors' name + GitHub username (in parenthesis), or name and email (in angle brackets).  Example, FirstName LastName (@GitHubUsername), FirstName LastName <foo@bar.com>, FirstName (@GitHubUsername) and GitHubUsername (@GitHubUsername)>
+title: <Non-Fungible Asset Bound Token>
+description: <An interface for Non-Fungible Asset Bound Tokens, also known as a NFABT.>
+author: <<Mihai Onila (@MihaiORO), Nick Zeman (@NickZCZ), Narcis Cotaie (@NarcisCRO)>
 discussions-to: <URL>
-status: Draft
+status: Idea
 type: <Standards Track, Meta, or Informational>
-category: <Core, Networking, Interface, or ERC> # Only required for Standards Track. Otherwise, remove this field.
+category: <ERC> # Only required for Standards Track. Otherwise, remove this field.
 created: <date created on, in ISO 8601 (yyyy-mm-dd) format>
 requires: <EIP number(s)> # Only required when you reference an EIP in the `Specification` section. Otherwise, remove this field.
 ---
 
-try and find me, test #2
+
 <!--
   READ EIP-1 (https://eips.ethereum.org/EIPS/eip-1) BEFORE USING THIS TEMPLATE!
 
@@ -25,23 +25,24 @@ try and find me, test #2
 
 ## Abstract
 
-<!--
-  The Abstract is a multi-sentence (short paragraph) technical summary. This should be a very terse and human-readable version of the specification section. Someone should be able to read only the abstract to get the gist of what this specification does.
+A standard interface for Non-Fungible Asset Bound Tokens (NFABT/s), a subset of the more general Asset Bound Token (KBT/s).
 
-  TODO: Remove this comment before submitting
--->
+The following standard allows for the implementation of a standard API for tokens within smart contracts and removes basic functionality to the `transferFrom`and `approve` functions. In doing so, the ABT cannot be transferred in the traditional sense as it’s intended to be transferred with a specific asset. 
+
+New read functions are referred to as ‘Linked’ functions such as ‘linkedTotalSupply’ and ‘linkedContract’. This information will point to the and reflect the information of the linked collection. 
+
+We considered ABTs being used by every individual who wish to link an additional non-fungible asset to an already existing non-fungible asset. ABT’s allow tokens to be bound together, allowing them to symbiotically work together rather than causing separation despite being created at different times.
+
 
 ## Motivation
 
-<!--
-  This section is optional.
+Currently only wallets or addresses can own an asset. With the rise of numerous digital collectables and the idea of digital identity, entities must create a second collection when the first one can no longer support the evolution of an idea, or rather it’s simply a new idea overall.
+What we see happening time and time again, is the creation of a secondary smart contract, often a secondary collection, that does little for the first. If anything, a negative impact on the first can be recorded as the creator must split his attention in 2 with the creation of a secondary smart contract. Oftentimes this leads to holders of collection one selling their assets on the market, in an attempt to get a more sought after asset within collection 2. The result is liquidity being pulled from the 1st collection, and allocated into the second, rarely benefiting the first collection in any way.
 
-  The motivation section should include a description of any nontrivial problems the EIP solves. It should not describe how the EIP solves those problems, unless it is not immediately obvious. It should not describe why the EIP should be made into a standard, unless it is not immediately obvious.
+In a different setting, we can observe the issuance of IDs happening in every nation, such as a passport. This document can be used to not only identify oneself, but also to link individuals to their healthcare insurance, driver license, bank accounts and so on. If we are to see the creation of a universal digital identification ID, the idea that each of these documents should not be linked or connected can result in major issues. For example, a smart contract is made for each of these, minting a token for each. If a user decides to switch wallets, they must pay close attention to send all of these tokens as to not get lost. The concept of an on-chain identity is not a farfetched idea, but requiring the individual to migrate all issued tokens from various identities can be catastrophic.
 
-  With a few exceptions, external links are not allowed. If you feel that a particular resource would demonstrate a compelling case for your EIP, then save it as a printer-friendly PDF, put it in the assets folder, and link to that copy.
+ABTs is a token standard that bind one token to another token by linking it. This means if the primary token gets moved, all of the linked tokens information will update, essentially moving with it without the act of the token actually moving. The token standard can be viewed as a live repository, updating in accordance with the primary token while remaining independent with its own set of information. Therefore, whether it’s a secondary collection intended to complement the first, or healthcare issued to an ID, the smart contract is complementary and does not compete with the first, but rather adds to it.
 
-  TODO: Remove this comment before submitting
--->
 
 ## Specification
 
@@ -69,18 +70,7 @@ TBD
 
 ## Backwards Compatibility
 
-<!--
-
-  This section is optional.
-
-  All EIPs that introduce backwards incompatibilities must include a section describing these incompatibilities and their severity. The EIP must explain how the author proposes to deal with these incompatibilities. EIP submissions without a sufficient backwards compatibility treatise may be rejected outright.
-
-  The current placeholder is acceptable for a draft.
-
-  TODO: Remove this comment before submitting
--->
-
-No backward compatibility issues found.
+This standard is fully ERC-721 and ERC-6809 compatible.
 
 ## Test Cases
 
@@ -106,13 +96,7 @@ No backward compatibility issues found.
 
 ## Security Considerations
 
-<!--
-  All EIPs must contain a section that discusses the security implications/considerations relevant to the proposed change. Include information that might be important for security discussions, surfaces risks and can be used throughout the life cycle of the proposal. For example, include security-relevant design decisions, concerns, important discussions, implementation-specific guidance and pitfalls, an outline of threats and risks and how they are being addressed. EIP submissions missing the "Security Considerations" section will be rejected. An EIP cannot proceed to status "Final" without a Security Considerations discussion deemed sufficient by the reviewers.
-
-  The current placeholder is acceptable for a draft.
-
-  TODO: Remove this comment before submitting
--->
+Asset Bound Tokens are linked to another non-fungible token. If an individual loses access to this mother token, they also losses access to all ABT tied to it. This is why we strongly recommend utilizing a ERC-6809 as the mother token, as Non-Fungible Key Bound Tokens were designed with security in mind every step of the way and way to retrieve the token incase access to the wallet is lost or connected to a malicious site. 
 
 Needs discussion.
 
